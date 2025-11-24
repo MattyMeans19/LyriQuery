@@ -1,0 +1,9 @@
+<%- include("partials/header.ejs") %>
+
+    <div>
+        <% if(songDetails){%>
+            <h3><%- songDetails.trackName%> by <%- songDetails.artistName%></h3>
+            <h4><%- songDetails.albumName%></h4>
+            <p><%- songDetails.plainLyrics%></p>
+            <%}%>
+    </div>

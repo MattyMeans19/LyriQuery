@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <form action="/search" method="POST">
+        <input type="text" id="search" name="search" placeholder="Search" autocomplete="off"/>
+        <input type="submit" value="Search">
+    </form>
+
+    <div>
+        <% if(results.length > 0){%>
+            <% for(let i=0; i < results.length; i++){%>
+                <form action="/song-details" method="POST">
+                    <button id="id" name="id" value='<%-results[i].id%>' type="submit"'>
+                        <p><%- results[i].trackName%> by <%- results[i].artistName%></p>
+                        <p>Album: <%- results[i].albumName%> Duration: <%- results[i].duration%> seconds</p>
+                    </button>  
+                </form>
+            <%}%>
+        <%}%>
+    </div>
+</body>
