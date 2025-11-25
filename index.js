@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT;
 const app = express();
 const API_URL = "https://lrclib.net"
 
