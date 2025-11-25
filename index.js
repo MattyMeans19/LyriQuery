@@ -12,16 +12,29 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(express.json());
 
+let searchQuery = "";
+
 app.get("/", (req,res) =>{
     res.render("index.ejs");
 });
 
-app.post("/search", async (req,res) =>{
-    let search = req.body["search"];
+app.get("/search", async (req,res) =>{
     try{
-        const request = await axios.get(API_URL +`/api/search?q=${search}`)
+        const request = await axios.get(API_URL +`/api/search?q=${searchQuery}`)
         const response = {results: request.data};
-        res.render("index.ejs", response);
+        res.render("results.ejs", response);
+    } catch(error){
+        console.log("error")
+        res.status(500).json({error: "Search Failed!"});       
+    }
+})
+
+app.post("/search", async (req,res) =>{
+    searchQuery = req.body["search"];
+    try{
+        const request = await axios.get(API_URL +`/api/search?q=${searchQuery}`)
+        const response = {results: request.data};
+        res.render("results.ejs", response);
     } catch(error){
         console.log("error")
         res.status(500).json({error: "Search Failed!"});       
@@ -30,7 +43,6 @@ app.post("/search", async (req,res) =>{
 
 app.post("/song-details", async (req,res) =>{
     let songId = req.body["id"];
-    console.log(songId);
     try{
         const request = await axios.get(API_URL + `/api/get/${songId}`);
         const response = {songDetails: request.data};

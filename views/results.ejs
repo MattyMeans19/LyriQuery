@@ -1,57 +1,14 @@
-<%- include("partials/header.ejs") %>
-
-<body>
-    <div>
+<%- include("index.ejs") %>
+    <div id="results">
         <% if(results.length > 0){%>
             <% for(let i = 0; i < results.length; i++){%>
-                <button value='<%-results[i].id%>' onclick='GetSong(this.value)'>
-                    <p><%- results[i].trackName%> by <%- results[i].artistName%></p>
-                    <p>Album: <%- results[i].albumName%> Duration: <%- results[i].duration%> seconds</p>
-                </button>
+                <form action="/song-details" method="POST">
+                    <button id="id" name="id" value='<%-results[i].id%>''>
+                        <p><%- results[i].trackName%> by <%- results[i].artistName%></p>
+                        <p>Album: <%- results[i].albumName%> Duration: <%- results[i].duration%> seconds</p>
+                    </button>  
+                </form>
+                
             <%}%>
         <%}%>
     </div>
-
-
-<script>
-    function GetSong(id) {
-        console.log("Attempting POST for ID:", id);
-        const songData = { id: id };
-
-        fetch("/song", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(songData)
-        })
-            .then(response => {
-                // Check for HTTP errors (4xx, 5xx)
-                if (!response.ok) {
-                    // If the server sends an error status, throw it
-                    return response.json().then(err => {
-                        throw new Error(err.error || `HTTP Error: ${response.status}`);
-                    });
-                }
-                // 1. ✅ Success: Expect JSON from the server
-                return response.json();
-            })
-            .then(data => {
-                // 2. ✅ Success: Check if the server provided a redirect URL
-                if (data && data.redirectUrl) {
-                    console.log("Redirecting to:", data.redirectUrl);
-                    // 3. 🚀 The Action: Force the browser to navigate
-                    window.location.href = data.redirectUrl;
-                } else {
-                    // This means the POST succeeded but didn't provide a URL (unexpected)
-                    console.error("POST successful, but no redirect URL received.");
-                }
-            })
-            .catch(error => {
-                // 4. ❌ Catch Network or Server Error
-                console.error("Fetch failed:", error);
-                alert(`Could not load song: ${error.message}. Check the console for details.`);
-            });
-    }
-</script>
-</body>

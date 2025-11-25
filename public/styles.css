@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("/images/Note_frame.jpg");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+}
+
+header{
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1{
+    font-size: 4rem;
+    color: #AB03AD;
+    background-image: linear-gradient(90deg, #2E03AD 4%, #FF1C1C 60%, #087800 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+a{
+    margin-left: 10vw;
+    font-size: 2rem;
+    text-decoration: none
+}
+
+
+#searchNote{
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+#searchBar{
+    width: 100vw;
+    height: 3vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+input{
+    border-radius: 10px;
+    font-size: 1.5rem;
+}
+
+#results{
+    width: 60vw;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    border: 15px double white;
+    border-radius: 15px;
+    overflow: scroll;
+    margin: 0 20vw;
+}
+
+#results form{
+    margin: 15px 0;
+}
+
+#results form button{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+    width: 50vw;
+    text-align: center;
+    color: white;
+    border-radius: 25px;
+    background: #1547a3;
+    background: linear-gradient(90deg,rgba(21, 71, 163, 1) 0%, rgba(192, 51, 194, 1) 25%, rgba(247, 25, 25, 1) 50%, rgba(219, 172, 42, 1) 75%, rgba(2, 189, 11, 1) 100%);
+}
+
+#songDetails { 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 90vw;
+    height: 65vh;
+    margin: 0px 5vw;
+    padding: 5vh 0;
+    color: white;
+    text-align: center;
+    overflow: scroll;
+    background-image: url("/images/MusicBox.jpg");
+    background-size: 100% 120%;
+    border-radius: 25px;
+}
+
+#songDetails h3{
+    font-size: 3rem;
+}
+
+#songDetails h4{
+    font-size: 2rem;
+}
+
+#songDetails p{
+    font-size: 1.5rem;
+}

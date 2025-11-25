@@ -1,9 +1,10 @@
 <%- include("partials/header.ejs") %>
 
-    <div>
+<a href="/search">🔙</a>
+    <div id="songDetails">
         <% if(songDetails){%>
             <h3><%- songDetails.trackName%> by <%- songDetails.artistName%></h3>
-            <h4><%- songDetails.albumName%></h4>
-            <p><%- songDetails.plainLyrics%></p>
+            <h4>Album: <%- songDetails.albumName%></h4>
+            <p><%- songDetails.plainLyrics.replace(/\n/g, "<br>")%></p>
             <%}%>
     </div>
